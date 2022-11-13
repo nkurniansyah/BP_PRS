@@ -8,9 +8,9 @@ race/ethnic background groups (link to be added)
 
 First, it provides instructions for constructing the BP-PRS based on
 summary statistics after computing the weight using \[PRS-CSx\]
-(<https://github.com/getian107/PRScsx> , “PRS-CSx”). The summary
-statiscs can be download here, and the code, and weight from MGB biobank
-to construct the PRS-score availbale in this repisotory.
+(<https://github.com/getian107/PRScsx> “PRS-CSx”). The summary statiscs
+can be download here, and the code, and weight from MGB biobank to
+construct the PRS-score availbale in this repisotory.
 
 Second, this repository also provides code the we used for the analyses
 in the manuscript (see folder “Code”).
