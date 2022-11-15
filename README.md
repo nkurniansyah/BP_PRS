@@ -6,11 +6,15 @@ that we developed (BP-PRS) in manuscript Evaluating the use of blood
 pressure polygenic risk scores based on largest available GWAS across
 race/ethnic background groups (link to be added)
 
-First, it provides instructions for constructing the BP-PRS based on
-summary statistics after computing the weight using
-[PRS-CSx](https://github.com/getian107/PRScsx "PRS-CSx"). The summary
-statiscs can be download here, and the code, and weight from MGB biobank
-to construct the PRS-score availbale in this repisotory.
+First, we used and followed the
+[PRS-CSx](https://github.com/getian107/PRScsx "PRS-CSx") to train
+ancestry-specific effect sizes and create ancestry-specific PRS, and
+weighted sums them. PRS-CSx takes summary statistics from multiple GWAS.
+Each GWAS is assigned an ancestry and a reference panel that matches
+this ancestry. Here, we paired UKBB+ICBP with the European ancestry
+reference panel, and BBJ with the East Asian panel, and MVP with the
+African reference panel. Additionally, the code, and weight from MGB
+Biobank to construct the PRS score are availbale in this repository.
 
 Second, this repository also provides code the we used for the analyses
 in the manuscript (see folder “Code”).
@@ -18,9 +22,8 @@ in the manuscript (see folder “Code”).
 ## Required packages
 
 We used [PLINK v1.9](https://www.cog-genomics.org/plink/ "PLINK v1.9")
-to generate PRS. We provide example code that also uses PRSice to
-construct PRS based on the provided summary statistics in folder
-“Summary\_Statistics\_for\_PRS\_construction”.
+to generate PRS. We provide example code that also uses to construct the
+PRS.
 
 Other software and packages that we used, but may not be necessary for
 others to construct the PRS, are as follows:  
@@ -34,52 +37,53 @@ GWASTools.
 
 ## PRS construction
 
-Our HTN-PRS is a sum of multiple trait-specific PRS (HTN, systolic blood
-pressure (SBP) and diastolic blood pressure (DBP)). Summary statistics
-to create the each of the trait-PRS are provided here in a
-subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*).
+Our BP-PRS is a weighted sum of multiple specifics ancestry GWAS.
+Summary statistics to create the each of the ancstry -PRS are provided
+in here.
 
-Specific GWAS used: hypertension “pan ancestry” GWAS from
-[UKBB](https://pan.ukbb.broadinstitute.org), ([SBP GWAS from
-MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and ([DBP GWAS from
-MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) with MVP standing for
-Million Veteran Program.
-
-The summary statistics provided in this repository were selected from
-those in the complete GWAS based on clumping parameter below, where we
-used the multi-ethnic TOPMed dataset used in the paper as an LD
-reference panel. To select the specific tuning parameter (LD parameters,
-p-value threshold) for each trait-specific PRS, we applied an approach
-where we optimized the coefficient of variation (CV) computed over the
-estimated effect sizes of the candidate PRS across 5 independent subset
-of the training dataset. See manuscript for more detail.
-
-The table below provides, for each trait-specific GWAS used, the
+The table below provides, for each ancestry-specific GWAS used, the
 following information:  
 
-1.  GWAS\_pop: GWAS population (which cohort/study the GWAS summary
-    statistics are from?)  
-2.  Trait (HTN, SBP, DBP)  
-3.  Threshold: p-value threshold for selecting SNPs into the PRS  
-4.  Distance: distance in kilo base-pairs used for clumping (SNPs were
-    removed from consideration based on LD with other SNPs within a
-    window of this distance)  
-5.  R2: maximum LD for inclusion of SNPs within the distance-based
-    window of another SNP that was already selected into the PRS.  
-6.  TOPMed\_mean: the mean of the PRS after it was constructed in the
+1.  GWAS\_Anc: GWAS Ancestry (which cohort/study the GWAS summary
+    statistics matched)  
+2.  Trait (SBP, DBP)  
+3.  TOPMed\_mean: the mean of the PRS after it was constructed in the
     multi-ethnic TOPMed population. That is, each of the TOPMed
     participants had a PRS value. This is the mean of these values.  
-7.  TOPMed\_sd: the standard deviation (SD) of the PRS after it was
+4.  TOPMed\_sd: the standard deviation (SD) of the PRS after it was
     constructed in the multi-ethnic TOPMed population. That is, each of
     the TOPMed participants had a PRS value. This is the SD of these
     values.
 
 <!-- -->
 
-    ##   GWAS_pop Trait Threshold Distance  R2 TOPMed_mean TOPMed_sd
-    ## 1 Pan-UKBB   HTN      0.30    250kb 0.1   -8.57e-06  1.98e-05
-    ## 2      MVP   DBP      0.10    250kb 0.3   -4.95e-04  2.63e-04
-    ## 3      MVP   SBP      0.01   1000kb 0.2   -4.63e-03  1.11e-03
+    ##   GWAS_Anc Trait TOPMed_mean TOPMed_sd
+    ## 1      AFR   SBP   -6.73e-07  4.54e-07
+    ## 2      EUR   SBP    1.31e-06  3.22e-07
+    ## 3      EAS   SBP    4.99e-07  3.05e-07
+    ## 4      AFR   DBP   -4.02e-07  3.05e-07
+    ## 5      EUR   DBP    6.64e-07  2.60e-07
+    ## 6      EAS   DBP    3.02e-07  2.45e-07
+
+We also provide MGB Biobank-trained PRS summation weights for the best
+performing PRS.
+
+The table below provides, for each background-specific weight used to
+construct PRS, the following information:  
+
+1.  Trait (SBP, DBP)  
+2.  Race\_Ethnic\_Background: Race/ ethnic background
+3.  MBG\_weight: weight in MGB to construct PRS.
+
+<!-- -->
+
+    ##   GWAS_Anc Trait TOPMed_mean TOPMed_sd
+    ## 1      AFR   SBP   -6.73e-07  4.54e-07
+    ## 2      EUR   SBP    1.31e-06  3.22e-07
+    ## 3      EAS   SBP    4.99e-07  3.05e-07
+    ## 4      AFR   DBP   -4.02e-07  3.05e-07
+    ## 5      EUR   DBP    6.64e-07  2.60e-07
+    ## 6      EAS   DBP    3.02e-07  2.45e-07
 
 ## PRSice command for PRS construction
 
