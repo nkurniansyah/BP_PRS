@@ -45,20 +45,23 @@ Asian, and
 with the African reference panel. We used UKBB as LD reference
 panels.See manuscript for more detail. Additionally, the code, TOPMed
 mean, sd and weight from MGB Biobank to construct the PRS score are
-available in this repository.
+available in this repository.  
 
 The table below provides, for each ancestry and trait summary statistic
-used, the following information:
+used, the following information:  
 
-Ancestry: GWAS Ancestry (which cohort/study the GWAS summary statistics
-matched)  
-Trait (SBP, DBP)  
-TOPMed\_mean: the mean of the PRS after it was constructed in the
-multi-ethnic TOPMed population. That is, each of the TOPMed participants
-had a PRS value. This is the mean of these values. TOPMed\_sd: the
-standard deviation (SD) of the PRS after it was constructed in the
-multi-ethnic TOPMed population. That is, each of the TOPMed participants
-had a PRS value. This is the SD of these values.
+1.  Ancestry: GWAS Ancestry (which cohort/study the GWAS summary
+    statistics matched)  
+2.  Trait: (SBP, DBP)  
+    3.TOPMed\_mean: the mean of the PRS after it was constructed in the
+    multi-ethnic TOPMed population. That is, each of the TOPMed
+    participants had a PRS value. This is the mean of these values  
+3.  TOPMed\_sd: the standard deviation (SD) of the PRS after it was
+    constructed in the multi-ethnic TOPMed population. That is, each of
+    the TOPMed participants had a PRS value. This is the SD of these
+    values  
+
+<!-- -->
 
     ##   Trait Ancestry TOPMed_mean TOPMed_sd
     ## 1   SBP      EAS    4.20e-07  2.43e-07
@@ -123,15 +126,18 @@ Below is an example command to construct PRS for SBP.
 The table below provides, for each ancestry and trait summary statistic
 used, the following information:
 
-Ancestry: GWAS Ancestry (which cohort/study the GWAS summary statistics
-matched)  
-Trait (SBP, DBP)  
-TOPMed\_mean: the mean of the PRS after it was constructed in the
-multi-ethnic TOPMed population. That is, each of the TOPMed participants
-had a PRS value. This is the mean of these values. TOPMed\_sd: the
-standard deviation (SD) of the PRS after it was constructed in the
-multi-ethnic TOPMed population. That is, each of the TOPMed participants
-had a PRS value. This is the SD of these values.
+1.  Ancestry: GWAS Ancestry (which cohort/study the GWAS summary
+    statistics matched)  
+2.  Trait (SBP, DBP)  
+3.  TOPMed\_mean: the mean of the PRS after it was constructed in the
+    multi-ethnic TOPMed population. That is, each of the TOPMed
+    participants had a PRS value. This is the mean of these values  
+4.  TOPMed\_sd: the standard deviation (SD) of the PRS after it was
+    constructed in the multi-ethnic TOPMed population. That is, each of
+    the TOPMed participants had a PRS value. This is the SD of these
+    values  
+
+<!-- -->
 
     ##   Trait Ancestry TOPMed_mean TOPMed_sd
     ## 1   SBP      EAS    4.20e-07  2.43e-07
