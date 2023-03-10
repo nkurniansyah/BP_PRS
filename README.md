@@ -38,6 +38,8 @@ Our BP-PRS is a weighted sum of multiple specifics ancestry GWAS.
 Summary statistics to create the each of the ancstry -PRS are provided
 in PGS catalog \[link to be added\]
 
+### PRS command to construct PRS using PLINK v.19
+
 We provide the command to construct PRS based summary statistics that we
 provide. Genetic data files need to be specified in the –bfile argument.
 Below is an example command to construct PRS for SBP.
