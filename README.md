@@ -50,9 +50,9 @@ available in this repository.
 The table below provides, for each ancestry and trait summary statistic
 used, the following information:  
 
-1.  Ancestry: GWAS Ancestry (which cohort/study the GWAS summary
-    statistics matched)  
-2.  Trait: (SBP, DBP)  
+1.  Trait: SBP and DBP  
+2.  Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
+    matched)  
 3.  TOPMed\_mean: the mean of the PRS after it was constructed in the
     multi-ethnic TOPMed population. That is, each of the TOPMed
     participants had a PRS value. This is the mean of these values  
@@ -70,3 +70,26 @@ used, the following information:
     ## 4   DBP      EAS    2.04e-07  2.46e-07
     ## 5   DBP      AFR   -1.49e-06  1.94e-06
     ## 6   DBP      EUR    7.17e-07  2.19e-07
+
+We also provide weight that we built in Mass General Brigham biobank.The
+table below provides, for each ancestry, trait summary statistic, and
+weight used, the following information:  
+
+1.  Trait: SBP and DBP  
+2.  Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
+    matched)  
+3.  All: Weight for all the sample  
+4.  Asian: Weight for Asian population  
+5.  Balck: Weight for Black population
+6.  Hipanic/Latino: Weight for Hipanic/Latino population
+7.  White: Weight for White population
+
+<!-- -->
+
+    ##   Trait Ancestry  All Asian Black Hispanic/Latino White
+    ## 1   SBP      AFR 2.23 -0.01  3.92            3.54  2.15
+    ## 2            EAS 0.84  1.60  0.55            0.76  0.83
+    ## 3            EUR 4.03  3.58  3.11            4.37  4.06
+    ## 4   DBP      AFR 0.97  0.61  2.30            1.31  0.85
+    ## 5            EAS 0.49  1.13  0.46            0.76  0.47
+    ## 6            EUR 2.13  2.67  1.78            2.48  2.11
