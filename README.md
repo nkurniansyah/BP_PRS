@@ -32,9 +32,11 @@ GWASTools.
 
     install.packages("dplyr")
 
-\#\#PRS construction Our BP-PRS is a weighted sum of multiple specifics
-ancestry GWAS. Summary statistics to create the each of the ancstry -PRS
-are provided in PGS catalog \[link to be added\]
+## PRS construction
+
+Our BP-PRS is a weighted sum of multiple specifics ancestry GWAS.
+Summary statistics to create the each of the ancstry -PRS are provided
+in PGS catalog \[link to be added\]
 
 We provide the command to construct PRS based summary statistics that we
 provide. Genetic data files need to be specified in the –bfile argument.
@@ -51,7 +53,6 @@ used, the following information:
 Ancestry: GWAS Ancestry (which cohort/study the GWAS summary statistics
 matched)  
 Trait (SBP, DBP)  
-Threshold: p-value threshold for selecting SNPs into the PRS
 TOPMed\_mean: the mean of the PRS after it was constructed in the
 multi-ethnic TOPMed population. That is, each of the TOPMed participants
 had a PRS value. This is the mean of these values. TOPMed\_sd: the
@@ -59,13 +60,13 @@ standard deviation (SD) of the PRS after it was constructed in the
 multi-ethnic TOPMed population. That is, each of the TOPMed participants
 had a PRS value. This is the SD of these values.
 
-    ##   Trait Ancestry      Mean       SD
-    ## 1   SBP      EAS  4.20e-07 2.43e-07
-    ## 2            AFR  9.29e-07 2.38e-06
-    ## 3            EUR  1.49e-06 2.55e-07
-    ## 4   DBP      EAS  2.04e-07 2.46e-07
-    ## 5            AFR -1.49e-06 1.94e-06
-    ## 6            EUR  7.17e-07 2.19e-07
+    ##   Trait Ancestry TOPMed_mean TOPMed_sd
+    ## 1   SBP      EAS    4.20e-07  2.43e-07
+    ## 2   SBP      AFR    9.29e-07  2.38e-06
+    ## 3   SBP      EUR    1.49e-06  2.55e-07
+    ## 4   DBP      EAS    2.04e-07  2.46e-07
+    ## 5   DBP      AFR   -1.49e-06  1.94e-06
+    ## 6   DBP      EUR    7.17e-07  2.19e-07
 
 We also provide MGB Biobank-trained PRS summation weights for the best
 performing PRS.
