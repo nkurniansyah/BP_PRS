@@ -32,11 +32,9 @@ GWASTools.
 
     install.packages("dplyr")
 
-## PLINK v1.9 command for PRS construction
-
-Our BP-PRS is a weighted sum of multiple specifics ancestry GWAS.
-Summary statistics to create the each of the ancstry -PRS are provided
-in PGS catalog \[link to be added\]
+\#\#PRS construction Our BP-PRS is a weighted sum of multiple specifics
+ancestry GWAS. Summary statistics to create the each of the ancstry -PRS
+are provided in PGS catalog \[link to be added\]
 
 We provide the command to construct PRS based summary statistics that we
 provide. Genetic data files need to be specified in the –bfile argument.
@@ -61,47 +59,6 @@ standard deviation (SD) of the PRS after it was constructed in the
 multi-ethnic TOPMed population. That is, each of the TOPMed participants
 had a PRS value. This is the SD of these values.
 
-    ## Warning: The package `ellipsis` (>= 0.3.2) is required as of rlang 1.0.0.
-
-    ## Warning: replacing previous import 'lifecycle::last_warnings' by
-    ## 'rlang::last_warnings' when loading 'tibble'
-
-    ## Warning: replacing previous import 'ellipsis::check_dots_unnamed' by
-    ## 'rlang::check_dots_unnamed' when loading 'tibble'
-
-    ## Warning: replacing previous import 'ellipsis::check_dots_used' by
-    ## 'rlang::check_dots_used' when loading 'tibble'
-
-    ## Warning: replacing previous import 'ellipsis::check_dots_empty' by
-    ## 'rlang::check_dots_empty' when loading 'tibble'
-
-    ## Warning: replacing previous import 'lifecycle::last_warnings' by
-    ## 'rlang::last_warnings' when loading 'pillar'
-
-    ## Warning: replacing previous import 'ellipsis::check_dots_unnamed' by
-    ## 'rlang::check_dots_unnamed' when loading 'pillar'
-
-    ## Warning: replacing previous import 'ellipsis::check_dots_used' by
-    ## 'rlang::check_dots_used' when loading 'pillar'
-
-    ## Warning: replacing previous import 'ellipsis::check_dots_empty' by
-    ## 'rlang::check_dots_empty' when loading 'pillar'
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:data.table':
-    ## 
-    ##     between, first, last
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
     ##   Trait Ancestry      Mean       SD
     ## 1   SBP      EAS  4.20e-07 2.43e-07
     ## 2            AFR  9.29e-07 2.38e-06
@@ -109,14 +66,6 @@ had a PRS value. This is the SD of these values.
     ## 4   DBP      EAS  2.04e-07 2.46e-07
     ## 5            AFR -1.49e-06 1.94e-06
     ## 6            EUR  7.17e-07 2.19e-07
-
-    ##   GWAS_Anc Trait TOPMed_mean TOPMed_sd
-    ## 1      AFR   SBP   -6.73e-07  4.54e-07
-    ## 2      EUR   SBP    1.31e-06  3.22e-07
-    ## 3      EAS   SBP    4.99e-07  3.05e-07
-    ## 4      AFR   DBP   -4.02e-07  3.05e-07
-    ## 5      EUR   DBP    6.64e-07  2.60e-07
-    ## 6      EAS   DBP    3.02e-07  2.45e-07
 
 We also provide MGB Biobank-trained PRS summation weights for the best
 performing PRS.
