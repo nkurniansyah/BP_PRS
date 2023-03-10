@@ -71,20 +71,18 @@ used, the following information:
     ## 5   DBP      AFR   -1.49e-06  1.94e-06
     ## 6   DBP      EUR    7.17e-07  2.19e-07
 
-We also provide weight that we built in Mass General Brigham biobank.The
-table below provides, for each ancestry, trait summary statistic, and
-weight used, the following information:  
-
-1.  Trait: SBP and DBP  
-2.  Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
-    matched)  
-3.  All: Weight for all the sample  
-4.  Asian: Weight for Asian population  
-5.  Balck: Weight for Black population
-6.  Hipanic/Latino: Weight for Hipanic/Latino population
-7.  White: Weight for White population
-
-<!-- -->
+We also provide the weight that we built in the Mass General Brigham
+biobank to construct the PRS. The table below provides, for each
+ancestry, trait summary statistic, and weight used for race/ethnicity,
+the following information:  
+Trait: SBP and DBP  
+Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
+matched)  
+All: Weight for all the sample  
+Asian: Weight for the Asian population  
+Balck: Weight for the Black population  
+Hispanic/Latino: Weight for The Hispanic/Latino population  
+White: Weight for the White population  
 
     ##   Trait Ancestry  All Asian Black Hispanic/Latino White
     ## 1   SBP      AFR 2.23 -0.01  3.92            3.54  2.15
@@ -93,3 +91,15 @@ weight used, the following information:
     ## 4   DBP      AFR 0.97  0.61  2.30            1.31  0.85
     ## 5            EAS 0.49  1.13  0.46            0.76  0.47
     ## 6            EUR 2.13  2.67  1.78            2.48  2.11
+
+## PLINK command for PRS construction
+
+This command is to construct PRS using summary statistics that we
+provide. The summary statistics are already based on the PRS-CSx
+results. Note that genetic data files need to be specified in the –bfile
+argument.
+
+    #
+    for ancestry in {AFR,EAS,EUR}; do plink --bfile genetic/file/here \
+    --score ../Summary_stats/SBP_$ancestry\_hg38.txt \
+    --out  ../PRS/PRS_SBP_$ancestry ; done
