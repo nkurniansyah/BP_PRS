@@ -75,14 +75,17 @@ We also provide the weight that we built in the Mass General Brigham
 biobank to construct the PRS. The table below provides, for each
 ancestry, trait summary statistic, and weight used for race/ethnicity,
 the following information:  
-1. Trait: SBP and DBP  
-2. Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
-matched)  
-3. All: Weight for all the sample  
-4. Asian: Weight for the Asian population  
-5. Balck: Weight for the Black population  
-6. Hispanic/Latino: Weight for The Hispanic/Latino population  
-7. White: Weight for the White population  
+
+1.  Trait: SBP and DBP  
+2.  Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
+    matched)  
+3.  All: Weight for all the sample  
+4.  Asian: Weight for the Asian population  
+5.  Balck: Weight for the Black population  
+6.  Hispanic/Latino: Weight for The Hispanic/Latino population  
+7.  White: Weight for the White population  
+
+<!-- -->
 
     ##   Trait Ancestry  All Asian Black Hispanic/Latino White
     ## 1   SBP      AFR 2.23 -0.01  3.92            3.54  2.15
