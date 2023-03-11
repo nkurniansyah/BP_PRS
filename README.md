@@ -75,14 +75,14 @@ We also provide the weight that we built in the Mass General Brigham
 biobank to construct the PRS. The table below provides, for each
 ancestry, trait summary statistic, and weight used for race/ethnicity,
 the following information:  
-Trait: SBP and DBP  
-Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
+1. Trait: SBP and DBP  
+2. Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
 matched)  
-All: Weight for all the sample  
-Asian: Weight for the Asian population  
-Balck: Weight for the Black population  
-Hispanic/Latino: Weight for The Hispanic/Latino population  
-White: Weight for the White population  
+3. All: Weight for all the sample  
+4. Asian: Weight for the Asian population  
+5. Balck: Weight for the Black population  
+6. Hispanic/Latino: Weight for The Hispanic/Latino population  
+7. White: Weight for the White population  
 
     ##   Trait Ancestry  All Asian Black Hispanic/Latino White
     ## 1   SBP      AFR 2.23 -0.01  3.92            3.54  2.15
@@ -99,7 +99,28 @@ provide. The summary statistics are already based on the PRS-CSx
 results. Note that genetic data files need to be specified in the –bfile
 argument.
 
-    #
     for ancestry in {AFR,EAS,EUR}; do plink --bfile genetic/file/here \
     --score ../Summary_stats/SBP_$ancestry\_hg38.txt \
     --out  ../PRS/PRS_SBP_$ancestry ; done
+
+## Constructing PRSsum based on trait and ancestry specific PRS
+
+After constructing trait and ancestry-specific PRS, the BP-PRS is
+obtained via the weighted PRSsum approach: First, we scaled PRS using
+TOPMed mean and SD value of each trait and ancestry-specific PRS;
+Second, we applied the weight from the MGB biobank that we provide for
+each trait and ancestry-specific PRS; Third, we sum the PRS for each
+ancestry for a specific trait. Finally, we applied the final scale for
+BP-PRS using the TOPMed mean and SD we provided below.  
+
+    ##    Trait            Race      Mean   SD
+    ## 1    SBP             All -2.85e-14 3.22
+    ## 2    SBP           Black -2.18e-14 3.05
+    ## 3    SBP           Asian -2.65e-14 4.00
+    ## 4    SBP Hispanic/Latino -3.07e-14 3.45
+    ## 5    SBP           White -2.87e-14 3.25
+    ## 6    DBP             All  5.92e-15 1.95
+    ## 7    DBP           Black  7.61e-15 2.26
+    ## 8    DBP           Asian  6.98e-15 2.66
+    ## 9    DBP Hispanic/Latino  7.44e-15 2.34
+    ## 10   DBP           White  5.65e-15 1.93
