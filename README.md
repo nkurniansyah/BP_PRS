@@ -87,13 +87,13 @@ the following information:
 
 <!-- -->
 
-    ##   Trait Ancestry  All Asian Black Hispanic/Latino White
-    ## 1   SBP      AFR 2.23 -0.01  3.92            3.54  2.15
-    ## 2            EAS 0.84  1.60  0.55            0.76  0.83
-    ## 3            EUR 4.03  3.58  3.11            4.37  4.06
-    ## 4   DBP      AFR 0.97  0.61  2.30            1.31  0.85
-    ## 5            EAS 0.49  1.13  0.46            0.76  0.47
-    ## 6            EUR 2.13  2.67  1.78            2.48  2.11
+    ##   Trait Ancestry  All Black Hispanic/Latino Asian White
+    ## 1   SBP      AFR 1.81  2.00            1.78  0.48  1.82
+    ## 2   SBP      EAS 0.68  0.35            0.50  1.17  0.69
+    ## 3   SBP      EUR 3.28  2.31            3.37  2.58  3.35
+    ## 4   DBP      AFR 0.69  1.42            0.76  0.63  0.61
+    ## 5   DBP      EAS 0.40  0.38            0.53  0.83  0.39
+    ## 6   DBP      EUR 1.71  1.44            1.82  1.93  1.71
 
 ## PLINK command for PRS construction
 
@@ -117,13 +117,37 @@ ancestry for a specific trait. Finally, we applied the final scale for
 BP-PRS using the TOPMed mean and SD we provided below.  
 
     ##    Trait            Race      Mean   SD
-    ## 1    SBP             All -2.85e-14 3.22
-    ## 2    SBP           Black -2.18e-14 3.05
-    ## 3    SBP           Asian -2.65e-14 4.00
-    ## 4    SBP Hispanic/Latino -3.07e-14 3.45
-    ## 5    SBP           White -2.87e-14 3.25
-    ## 6    DBP             All  5.92e-15 1.95
-    ## 7    DBP           Black  7.61e-15 2.26
-    ## 8    DBP           Asian  6.98e-15 2.66
-    ## 9    DBP Hispanic/Latino  7.44e-15 2.34
-    ## 10   DBP           White  5.65e-15 1.93
+    ## 1    SBP             All -2.32e-14 2.62
+    ## 2    SBP           Black -1.62e-14 1.84
+    ## 3    SBP           Asian -1.91e-14 2.64
+    ## 4    SBP Hispanic/Latino -2.35e-14 2.63
+    ## 5    SBP           White -2.36e-14 2.67
+    ## 6    DBP             All  4.60e-15 1.57
+    ## 7    DBP           Black  5.39e-15 1.56
+    ## 8    DBP           Asian  5.41e-15 1.90
+    ## 9    DBP Hispanic/Latino  5.07e-15 1.70
+    ## 10   DBP           White  4.45e-15 1.57
+
+See code below to construct weighted PRSsum.
+
+    source("./Code/construct_wPRSsum.R")
+
+    races<-c("All","Black","Asian","Hispanic/Latino","White")
+    for(race in races){
+      traits<-c("SBP","DBP")
+      for(trait in traits){
+        PRS_AFR<-paste0("../PRS/",trait,"_AFR.all_score")
+        PRS_EAS<-paste0("../PRS/",trait,"_EAS.all_score")
+        PRS_EUR<-paste0("../PRS/",trait,"_EUR.all_score")
+
+        wprssum_score<-construct_wPRSsum(ethnic_background = race ,
+                       TOPMed_scaling = TOPMed_scaling,
+                       TOPMed_PRSsum_scaling = TOPMed_PRSsum_scaling,
+                       mgb_weight=mgb_weight,
+                       PRS_AFR_file=PRS_AFR,
+                       PRS_EAS_file=PRS_EAS,
+                       PRS_EUR_file=PRS_EUR)
+        write.csv(wprssum_score, file = paste0("../output/wPRSsum/here/",trait,"_wPRSsum_",race,".csv"), row.names = F)
+      }
+      
+    }
