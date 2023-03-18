@@ -81,3 +81,5 @@ boot_pve <- function(phenotype,covariates_string,outcome,exposure,seed=NULL, n=1
   message("boostrap completed")
   return(variance_explained)
 }
+
+
