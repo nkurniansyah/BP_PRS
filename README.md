@@ -151,3 +151,62 @@ See code below to construct weighted PRSsum.
       }
       
     }
+
+## Example code for association analysis
+
+We performed association analysis using mixed models implemented in the
+GENESIS R package for all individuals and linear regression for
+unrelated individual. Below is an example code. It uses function that we
+provide in the folder “Code”.
+
+    library(GENESIS)
+    library(GWASTools)
+    library(pROC)
+
+
+    source("./Code/*")
+
+
+    #phenotype for all individual, if you want to run by background, please subset phenotype and PRSsum based on race/ethnicity.
+
+    pheno<- fread(phenotype_file, data.table=F)
+
+
+    # merge PRSsum with phenotype
+
+    pheno_df<-left_join(pheno,prssum, by="person_id")
+
+
+    covarites_prs<- c("BMI","age","sex","site","race",paste0("PC_",1:11),"wPRSsum")
+
+    outcome<-"SBP"
+
+    ## Kinship matrix
+
+    covMatlist<-getobj(covMatlist)
+
+
+    assoc_df<- run_assoc_mixmodel(pheno=pheno,
+                                  outcome=outcome,
+                                  covars_prs=covarites_prs, 
+                                  covmat=covMatlist,
+                                  group.var=NULL)
+
+
+    # Perform AUC
+
+    #only use unrelated people
+
+    unrels<- getobj(unrels_people)
+
+    pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
+
+
+    pve<-boot_pve(phenotype=pheno_unrels,
+                  covariates_string=covarites_prs,
+                  outcome=outcome,exposure="wPRSsum",seed=NULL, n=1000)
+
+
+
+
+    final_assoc<-c(assoc_df,pve)
