@@ -1,10 +1,10 @@
 ## Introduction
 
 This repository provides information regarding the construction of a
-polygenic risk score (PRS) for Systolic and Diastolic Blood Pressure
-that we developed (BP-PRS) in the manuscript Evaluating the use of blood
+polygenic risk score (PRS) for Systolic and Diastolic Blood Pressure (BP-PRS)
+that we developed as part of the manuscript "Evaluating the use of blood
 pressure polygenic risk scores based on the largest available GWAS
-across race/ethnic background groups (link to be added)
+across race/ethnic background groups" (link to be added).
 
 First, it provides instructions for constructing the BP-PRS based on
 weighted summary statistics from PRS-CSx. These files can be downloaded
@@ -15,7 +15,7 @@ used for the analyses in the manuscript (see folder “Code”)
 ## Required packages
 
 We used [PLINK v1.9](https://www.cog-genomics.org/plink/ "PLINK v1.9")
-to generate PRS. We provide example code that also uses to construct the
+to generate PRS. We provide example code to construct the
 PRS.
 
     install.packages("dplyr")
