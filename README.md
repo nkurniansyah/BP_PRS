@@ -1,10 +1,10 @@
 ## Introduction
 
 This repository provides information regarding the construction of a
-polygenic risk score (PRS) for Systolic and Diastolic Blood Pressure (BP-PRS)
-that we developed as part of the manuscript "Evaluating the use of blood
+polygenic risk score (PRS) for Systolic and Diastolic Blood Pressure
+that we developed (BP-PRS) in the manuscript Evaluating the use of blood
 pressure polygenic risk scores based on the largest available GWAS
-across race/ethnic background groups" (link to be added).
+across race/ethnic background groups (link to be added)
 
 First, it provides instructions for constructing the BP-PRS based on
 weighted summary statistics from PRS-CSx. These files can be downloaded
@@ -15,8 +15,7 @@ used for the analyses in the manuscript (see folder “Code”)
 ## Required packages
 
 We used [PLINK v1.9](https://www.cog-genomics.org/plink/ "PLINK v1.9")
-to generate PRS. We provide example code to construct the
-PRS.
+to generate PRS. We provide example code to construct the PRS.
 
     install.packages("dplyr")
 
@@ -30,10 +29,10 @@ GWASTools.
 
 ## PRS construction
 
-Our (SBP and DBP) BP-PRS is a weighted sum of multiple specifics
-ancestry GWAS. we used and followed the
+Our (SBP and DBP) BP-PRSs are weighted sums of multiple PRS constructed
+based on ancestry-specific GWAS. we used and followed the
 [PRS-CSx](https://github.com/getian107/PRScsx "PRS-CSx") to train
-ancestry-specific effect sizes and create ancestry-specific PRS and
+ancestry-specific effect sizes and create ancestry-specific PRSs and
 weighted sums of them. PRS-CSx takes summary statistics from multiple
 GWAS. Each GWAS is assigned an ancestry and a reference panel that
 matches this ancestry. Here, we paired
@@ -42,12 +41,12 @@ with European ancestry,
 [BBJ](https://www.nature.com/articles/s41588-018-0047-6 "BBJ") with East
 Asian, and
 [COGENT](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1006728 "COGENT")
-with the African reference panel. We used UKBB as LD reference
-panels.See manuscript for more detail. Additionally, the code, TOPMed
-mean, sd and weight from MGB Biobank to construct the PRS score are
-available in this repository.  
+with the African reference panel. We used UKBB subpopulations as LD
+reference panels. See manuscript for more detail. Additionally, the
+code, TOPMed mean, SD, and weights estimated from MGB Biobank to
+construct the PRSs are available in this repository.  
 
-The table below provides, for each ancestry and trait summary statistic
+The table below provides, for each ancestry and trait summary statistics
 used, the following information:  
 
 1.  Trait: SBP and DBP  
@@ -71,10 +70,10 @@ used, the following information:
     ## 5   DBP      AFR   -1.49e-06  1.94e-06
     ## 6   DBP      EUR    7.17e-07  2.19e-07
 
-We also provide the weight that we built in the Mass General Brigham
-biobank to construct the PRS. The table below provides, for each
-ancestry, trait summary statistic, and weight used for race/ethnicity,
-the following information:  
+We also provide the weights that we built using the Mass General Brigham
+biobank dataset to construct the PRS. The table below provides, for each
+ancestry, trait summary statistic, and weight used for each
+race/ethnicity group, the following information:  
 
 1.  Trait: SBP and DBP  
 2.  Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
@@ -82,7 +81,7 @@ the following information:
 3.  All: Weight for all the sample  
 4.  Asian: Weight for the Asian population  
 5.  Balck: Weight for the Black population  
-6.  Hispanic/Latino: Weight for The Hispanic/Latino population  
+6.  Hispanic/Latino: Weight for the Hispanic/Latino population  
 7.  White: Weight for the White population  
 
 <!-- -->
@@ -106,15 +105,15 @@ argument.
     --score ../Summary_stats/SBP_$ancestry\_hg38.txt \
     --out  ../PRS/PRS_SBP_$ancestry ; done
 
-## Constructing PRSsum based on trait and ancestry specific PRS
+## Constructing PRS summation based on trait and ancestry specific PRS
 
 After constructing trait and ancestry-specific PRS, the BP-PRS is
-obtained via the weighted PRSsum approach: First, we scaled PRS using
-TOPMed mean and SD value of each trait and ancestry-specific PRS;
+obtained via the weighted PRS summation approach: First, we scaled PRSs
+using TOPMed mean and SD value of each trait and ancestry-specific PRS;
 Second, we applied the weight from the MGB biobank that we provide for
 each trait and ancestry-specific PRS; Third, we sum the PRS for each
 ancestry for a specific trait. Finally, we applied the final scale for
-BP-PRS using the TOPMed mean and SD we provided below.  
+BP-PRS using the TOPMed mean and SD we provide below.  
 
     ##    Trait            Race      Mean   SD
     ## 1    SBP             All -2.32e-14 2.62
@@ -128,7 +127,7 @@ BP-PRS using the TOPMed mean and SD we provided below.
     ## 9    DBP Hispanic/Latino  5.07e-15 1.70
     ## 10   DBP           White  4.45e-15 1.57
 
-See code below to construct weighted PRSsum.
+See code below to construct weighted PRS summation.
 
     source("./Code/construct_wPRSsum.R")
 
@@ -156,8 +155,8 @@ See code below to construct weighted PRSsum.
 
 We performed association analysis using mixed models implemented in the
 GENESIS R package for all individuals and linear regression for
-unrelated individual. Below is an example code. It uses function that we
-provide in the folder “Code”.
+unrelated individual. Below is an example code. It uses functions that
+we provide in the folder “Code”.
 
     library(GENESIS)
     library(GWASTools)
@@ -166,6 +165,8 @@ provide in the folder “Code”.
 
     source("./Code/*")
 
+    # add name of file of IDs of unrelated individuals as needed
+    # unrels_people <-  file_name_here
 
     #phenotype for all individual, if you want to run by background, please subset phenotype and PRSsum based on race/ethnicity.
 
@@ -196,8 +197,8 @@ provide in the folder “Code”.
     # Perform AUC
 
     #only use unrelated people
-
-    unrels<- getobj(unrels_people)
+    # we pre-computed the set of unrelated individuals and saved their IDs.
+    unrels<- getobj(unrels_people) 
 
     pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
 
