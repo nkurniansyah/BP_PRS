@@ -62,6 +62,12 @@ used, the following information:
 
 <!-- -->
 
+    scaling <- fread("Misc/2022-03-16_TOPMed_scaling_PRS_CSx2.csv", data.table=F)
+
+    scaling<-scaling %>% dplyr::select(Trait,Ancestry,Mean,SD)
+    colnames(scaling)<-c("Trait","Ancestry","TOPMed_mean","TOPMed_sd")
+    scaling
+
     ##   Trait Ancestry TOPMed_mean TOPMed_sd
     ## 1   SBP      EAS    4.20e-07  2.43e-07
     ## 2   SBP      AFR    9.29e-07  2.38e-06
@@ -85,6 +91,11 @@ race/ethnicity group, the following information:
 7.  White: Weight for the White population  
 
 <!-- -->
+
+    weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
+    #weight
+    colnames(weight)<-c("Trait","Ancestry","All","Black","Hispanic/Latino","Asian","White")
+    weight
 
     ##   Trait Ancestry  All Black Hispanic/Latino Asian White
     ## 1   SBP      AFR 1.81  2.00            1.78  0.48  1.82
@@ -114,6 +125,10 @@ Second, we applied the weight from the MGB biobank that we provide for
 each trait and ancestry-specific PRS; Third, we sum the PRS for each
 ancestry for a specific trait. Finally, we applied the final scale for
 BP-PRS using the TOPMed mean and SD we provide below.  
+
+    final_scale<-read.csv("Misc/2022-03-16_Final_TOPMed_scaling_PRSsum_PRS_CSx2.csv")
+
+    final_scale
 
     ##    Trait            Race      Mean   SD
     ## 1    SBP             All -2.32e-14 2.62
