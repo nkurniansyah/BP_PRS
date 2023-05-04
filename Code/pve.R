@@ -53,7 +53,6 @@ boot_pve <- function(phenotype,covariates_string,outcome,exposure,seed=NULL, n=1
   
   out <- list()
   
-  print("here")
   for(i in 1:n){
     
     df <- sample_n(phenotype_clean, nrow(phenotype_clean), replace = TRUE)
