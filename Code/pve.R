@@ -76,7 +76,7 @@ boot_pve <- function(phenotype,covariates_string,outcome,exposure,seed=NULL, n=1
   res<-do.call(c,out)
   
 
-  variance_explained<-quantile(res, c(0.025,0.5, 0.975))
+  variance_explained<-quantile(res, c(0.025, 0.975))
 
   message("boostrap completed")
   return(variance_explained)
