@@ -218,11 +218,11 @@ we provide in the folder “Code”.
     pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
 
 
-    pve<-boot_pve(phenotype=pheno_unrels,
+    boot.pve<-boot_pve(phenotype=pheno_unrels,
                   covariates_string=covarites_prs,
                   outcome=outcome,exposure="wPRSsum",seed=NULL, n=1000)
 
 
 
 
-    final_assoc<-c(assoc_df,pve)
+    final_assoc<-c(assoc_df,boot.pve)

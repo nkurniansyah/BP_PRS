@@ -50,12 +50,11 @@ library(dplyr)
 ```
 
 
-```{r echo=FALSE}
+```{r}
 
-scaling <- fread("/Users/nuzululkurniansyah/Documents/BP_PRS/MGB_Weight/2022-03-16_TOPMed_scaling_PRS_CSx2_info.csv", data.table=F)
-scaling$prs_type<-gsub("prs_","",scaling$prs_type)
+scaling <- fread("Misc/2022-03-16_TOPMed_scaling_PRS_CSx2.csv", data.table=F)
 
-scaling<-scaling %>% dplyr::rename(Ancestry=prs_type) %>% dplyr::select(Trait,Ancestry,Mean,SD)
+scaling<-scaling %>% dplyr::select(Trait,Ancestry,Mean,SD)
 colnames(scaling)<-c("Trait","Ancestry","TOPMed_mean","TOPMed_sd")
 scaling
 ```
@@ -70,11 +69,9 @@ We also provide the weights that we built using the Mass General Brigham biobank
 6. Hispanic/Latino: Weight for the Hispanic/Latino population\
 7. White: Weight for the White population\
 
-```{r echo=FALSE}
-weight<-fread("/Users/nuzululkurniansyah/Documents/BP_PRS/MGB_Weight/2022-03-16_MGB_Weight_PRS_CSx2_info.csv", data.table=F)
+```{r}
+weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
 #weight
-weight$PRS_Type<-gsub("prs_","",weight$PRS_Type)
-weight<-weight %>% dplyr::rename(Ancestry=PRS_Type)
 colnames(weight)<-c("Trait","Ancestry","All","Black","Hispanic/Latino","Asian","White")
 weight
 ```
@@ -95,8 +92,8 @@ for ancestry in {AFR,EAS,EUR}; do plink --bfile genetic/file/here \
 
 After constructing trait and ancestry-specific PRS, the BP-PRS is obtained via the weighted PRS summation approach: First, we scaled PRSs using TOPMed mean and SD value of each trait and ancestry-specific PRS; Second, we applied the weight from the MGB biobank that we provide for each trait and ancestry-specific PRS; Third, we sum the PRS for each ancestry for a specific trait. Finally, we applied the final scale for BP-PRS  using the TOPMed mean and SD we provide below.\
 
-```{r echo=FALSE}
-final_scale<-read.csv("/Users/nuzululkurniansyah/Documents/BP_PRS/MGB_Weight/2022-03-16_PRSsum_PRS_CSx2_info.csv")
+```{r}
+final_scale<-read.csv("Misc/2022-03-16_Final_TOPMed_scaling_PRSsum_PRS_CSx2.csv")
 
 final_scale
 
@@ -187,13 +184,13 @@ unrels<- getobj(unrels_people)
 pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
 
 
-pve<-boot_pve(phenotype=pheno_unrels,
+boot.pve<-boot_pve(phenotype=pheno_unrels,
               covariates_string=covarites_prs,
               outcome=outcome,exposure="wPRSsum",seed=NULL, n=1000)
 
 
 
 
-final_assoc<-c(assoc_df,pve)
+final_assoc<-c(assoc_df,boot.pve)
 ```
 
