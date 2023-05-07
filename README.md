@@ -42,7 +42,7 @@ with European ancestry,
 Asian, and
 [COGENT](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1006728 "COGENT")
 with the African reference panel. We used UKBB subpopulations as LD
-reference panels. See manuscript for more detail. Additionally, the
+reference panels. See the manuscript for more detail. Additionally, the
 code, TOPMed mean, SD, and weights estimated from MGB Biobank to
 construct the PRSs are available in this repository.  
 
@@ -77,7 +77,7 @@ used, the following information:
     ## 6   DBP      EUR    7.17e-07  2.19e-07
 
 We also provide the weights that we built using the Mass General Brigham
-biobank dataset to construct the PRS. The table below provides, for each
+Biobank dataset to construct the PRS. The table below provides, for each
 ancestry, trait summary statistic, and weight used for each
 race/ethnicity group, the following information:  
 
