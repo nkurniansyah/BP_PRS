@@ -1,10 +1,10 @@
-Trait,Race,Mean,SD
-SBP,All,-2.32E-14,2.62
+Trait,Self_reported_ethnic_background,Mean,SD
+SBP,All participants,-2.32E-14,2.62
 SBP,Black,-1.62E-14,1.84
 SBP,Asian,-1.91E-14,2.64
 SBP,Hispanic/Latino,-2.35E-14,2.63
 SBP,White,-2.36E-14,2.67
-DBP,All,4.60E-15,1.57
+DBP,All participants,4.60E-15,1.57
 DBP,Black,5.39E-15,1.56
 DBP,Asian,5.41E-15,1.9
 DBP,Hispanic/Latino,5.07E-15,1.7
