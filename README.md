@@ -8,9 +8,9 @@ across race/ethnic background groups (link to be added)
 
 First, it provides instructions for constructing the BP-PRS based on
 weighted summary statistics from PRS-CSx. These files can be downloaded
-from the PGS catalog \[link to be added\], and code for using them to
-construct the PRS. Second, this repository also provides code that we
-used for the analyses in the manuscript (see folder “Code”)
+from the \[""\], and code for using them to construct the PRS. Second,
+this repository also provides code that we used for the analyses in the
+manuscript (see folder “Code”)
 
 ## Required packages
 
@@ -84,7 +84,7 @@ race/ethnicity group, the following information:
 1.  Trait: SBP and DBP  
 2.  Ancestry: GWAS Ancestry (which ancestry the GWAS summary statistics
     matched)  
-3.  All: Weight for all the sample  
+3.  All participants: Weight for all the sample  
 4.  Asian: Weight for the Asian population  
 5.  Balck: Weight for the Black population  
 6.  Hispanic/Latino: Weight for the Hispanic/Latino population  
@@ -94,16 +94,16 @@ race/ethnicity group, the following information:
 
     weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
     #weight
-    colnames(weight)<-c("Trait","Ancestry","All","Black","Hispanic/Latino","Asian","White")
+    colnames(weight)<-c("Trait","Ancestry","All participants","Black","Hispanic/Latino","Asian","White")
     weight
 
-    ##   Trait Ancestry  All Black Hispanic/Latino Asian White
-    ## 1   SBP      AFR 1.81  2.00            1.78  0.48  1.82
-    ## 2   SBP      EAS 0.68  0.35            0.50  1.17  0.69
-    ## 3   SBP      EUR 3.28  2.31            3.37  2.58  3.35
-    ## 4   DBP      AFR 0.69  1.42            0.76  0.63  0.61
-    ## 5   DBP      EAS 0.40  0.38            0.53  0.83  0.39
-    ## 6   DBP      EUR 1.71  1.44            1.82  1.93  1.71
+    ##   Trait Ancestry All participants Black Hispanic/Latino Asian White
+    ## 1   SBP      AFR             1.81  2.00            1.78  0.48  1.82
+    ## 2   SBP      EAS             0.68  0.35            0.50  1.17  0.69
+    ## 3   SBP      EUR             3.28  2.31            3.37  2.58  3.35
+    ## 4   DBP      AFR             0.69  1.42            0.76  0.63  0.61
+    ## 5   DBP      EAS             0.40  0.38            0.53  0.83  0.39
+    ## 6   DBP      EUR             1.71  1.44            1.82  1.93  1.71
 
 ## PLINK command for PRS construction
 
@@ -130,23 +130,23 @@ BP-PRS using the TOPMed mean and SD we provide below.
 
     final_scale
 
-    ##    Trait            Race      Mean   SD
-    ## 1    SBP             All -2.32e-14 2.62
-    ## 2    SBP           Black -1.62e-14 1.84
-    ## 3    SBP           Asian -1.91e-14 2.64
-    ## 4    SBP Hispanic/Latino -2.35e-14 2.63
-    ## 5    SBP           White -2.36e-14 2.67
-    ## 6    DBP             All  4.60e-15 1.57
-    ## 7    DBP           Black  5.39e-15 1.56
-    ## 8    DBP           Asian  5.41e-15 1.90
-    ## 9    DBP Hispanic/Latino  5.07e-15 1.70
-    ## 10   DBP           White  4.45e-15 1.57
+    ##    Trait Self_reported_ethnic_background      Mean   SD
+    ## 1    SBP                All participants -2.32e-14 2.62
+    ## 2    SBP                           Black -1.62e-14 1.84
+    ## 3    SBP                           Asian -1.91e-14 2.64
+    ## 4    SBP                 Hispanic/Latino -2.35e-14 2.63
+    ## 5    SBP                           White -2.36e-14 2.67
+    ## 6    DBP                All participants  4.60e-15 1.57
+    ## 7    DBP                           Black  5.39e-15 1.56
+    ## 8    DBP                           Asian  5.41e-15 1.90
+    ## 9    DBP                 Hispanic/Latino  5.07e-15 1.70
+    ## 10   DBP                           White  4.45e-15 1.57
 
 See code below to construct weighted PRS summation.
 
     source("./Code/construct_wPRSsum.R")
 
-    races<-c("All","Black","Asian","Hispanic/Latino","White")
+    races<-c("All participants","Black","Asian","Hispanic/Latino","White")
     for(race in races){
       traits<-c("SBP","DBP")
       for(trait in traits){
