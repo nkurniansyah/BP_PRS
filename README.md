@@ -210,15 +210,14 @@ we provide in the folder “Code”.
                                   group.var=NULL)
 
 
-    # Perform AUC
 
     #only use unrelated people
-    # we pre-computed the set of unrelated individuals and saved their IDs.
+    #we pre-computed the set of unrelated individuals and saved their IDs.
     unrels<- getobj(unrels_people) 
 
     pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
 
-
+    # Perform bootsraping for PVE (Percent of Variance Explained)
     boot.pve<-boot_pve(phenotype=pheno_unrels,
                   covariates_string=covarites_prs,
                   outcome=outcome,exposure="wPRSsum",seed=NULL, n=1000)
