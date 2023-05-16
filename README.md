@@ -8,7 +8,7 @@ across race/ethnic background groups (link to be added)
 
 First, it provides instructions for constructing the BP-PRS based on
 weighted summary statistics from PRS-CSx. These files can be downloaded
-from the \[""\], and code for using them to construct the PRS. Second,
+from the [here](https://zenodo.org/record/7908793#.ZGP8gOzMIyk  "here"], and code for using them to construct the PRS. Second,
 this repository also provides code that we used for the analyses in the
 manuscript (see folder “Code”)
 
@@ -146,22 +146,22 @@ See code below to construct weighted PRS summation.
 
     source("./Code/construct_wPRSsum.R")
 
-    races<-c("All participants","Black","Asian","Hispanic/Latino","White")
-    for(race in races){
+    races_ethnicity<-c("All participants","Black","Asian","Hispanic/Latino","White")
+    for(race_ethnicity in races_ethnicity){
       traits<-c("SBP","DBP")
       for(trait in traits){
         PRS_AFR<-paste0("../PRS/",trait,"_AFR.all_score")
         PRS_EAS<-paste0("../PRS/",trait,"_EAS.all_score")
         PRS_EUR<-paste0("../PRS/",trait,"_EUR.all_score")
 
-        wprssum_score<-construct_wPRSsum(ethnic_background = race ,
+        wprssum_score<-construct_wPRSsum(ethnic_background = race_ethnicity ,
                        TOPMed_scaling = TOPMed_scaling,
                        TOPMed_PRSsum_scaling = TOPMed_PRSsum_scaling,
                        mgb_weight=mgb_weight,
                        PRS_AFR_file=PRS_AFR,
                        PRS_EAS_file=PRS_EAS,
                        PRS_EUR_file=PRS_EUR)
-        write.csv(wprssum_score, file = paste0("../output/wPRSsum/here/",trait,"_wPRSsum_",race,".csv"), row.names = F)
+        write.csv(wprssum_score, file = paste0("../output/wPRSsum/here/",trait,"_wPRSsum_",race_ethnicity,".csv"), row.names = F)
       }
       
     }
@@ -175,8 +175,6 @@ we provide in the folder “Code”.
 
     library(GENESIS)
     library(GWASTools)
-    library(pROC)
-
 
     source("./Code/*")
 
@@ -209,18 +207,16 @@ we provide in the folder “Code”.
                                   group.var=NULL)
 
 
-    # Perform AUC
-
     #only use unrelated people
     # we pre-computed the set of unrelated individuals and saved their IDs.
     unrels<- getobj(unrels_people) 
 
     pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
 
-
+    #perform bootstarp for PVE (Percent of Variance Explained)
     boot.pve<-boot_pve(phenotype=pheno_unrels,
                   covariates_string=covarites_prs,
-                  outcome=outcome,exposure="wPRSsum",seed=NULL, n=1000)
+                  outcome=outcome,exposure="wPRSsum",seed=NULL, n=10000)
 
 
 
