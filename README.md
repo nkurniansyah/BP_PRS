@@ -62,10 +62,10 @@ used, the following information:
 
 <!-- -->
 
-    scaling <- fread("Misc/2022-03-16_TOPMed_scaling_PRS_CSx2.csv", data.table=F)
+    TOPMed_scaling <- fread("Misc/2022-03-16_TOPMed_scaling_PRS_CSx2.csv", data.table=F)
 
-    scaling<-scaling %>% dplyr::select(Trait,Ancestry,Mean,SD)
-    colnames(scaling)<-c("Trait","Ancestry","TOPMed_mean","TOPMed_sd")
+    TOPMed_scaling<-TOPMed_scaling %>% dplyr::select(Trait,Ancestry,Mean,SD)
+    colnames(TOPMed_scaling)<-c("Trait","Ancestry","TOPMed_mean","TOPMed_sd")
     scaling
 
     ##   Trait Ancestry TOPMed_mean TOPMed_sd
@@ -92,9 +92,9 @@ race/ethnicity group, the following information:
 
 <!-- -->
 
-    weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
+    mgb_weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
     #weight
-    colnames(weight)<-c("Trait","Ancestry","All participants","Black","Hispanic/Latino","Asian","White")
+    colnames(mgb_weight)<-c("Trait","Ancestry","All participants","Black","Hispanic/Latino","Asian","White")
     weight
 
     ##   Trait Ancestry All participants Black Hispanic/Latino Asian White
@@ -126,9 +126,9 @@ each trait and ancestry-specific PRS; Third, we sum the PRS for each
 ancestry for a specific trait. Finally, we applied the final scale for
 BP-PRS using the TOPMed mean and SD we provide below.  
 
-    final_scale<-read.csv("Misc/2022-03-16_Final_TOPMed_scaling_PRSsum_PRS_CSx2.csv")
+    TOPMed_PRSsum_scaling<-read.csv("Misc/2022-03-16_Final_TOPMed_scaling_PRSsum_PRS_CSx2.csv")
 
-    final_scale
+    TOPMed_PRSsum_scaling
 
     ##    Trait Self_reported_ethnic_background      Mean   SD
     ## 1    SBP                All participants -2.32e-14 2.62
