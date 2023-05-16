@@ -8,7 +8,7 @@ across race/ethnic background groups (link to be added)
 
 First, it provides instructions for constructing the BP-PRS based on
 weighted summary statistics from PRS-CSx. These files can be downloaded
-from the [here](https://zenodo.org/record/7908793#.ZGP8gOzMIyk "here"], and code for using them to construct the PRS. Second,
+from the [here](https://zenodo.org/record/7908793#.ZGP8gOzMIyk "here"), and code for using them to construct the PRS. Second,
 this repository also provides code that we used for the analyses in the
 manuscript (see folder “Code”)
 
