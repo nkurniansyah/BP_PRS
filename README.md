@@ -8,9 +8,10 @@ across race/ethnic background groups (link to be added)
 
 First, it provides instructions for constructing the BP-PRS based on
 weighted summary statistics from PRS-CSx. These files can be downloaded
-from the \[""\], and code for using them to construct the PRS. Second,
-this repository also provides code that we used for the analyses in the
-manuscript (see folder “Code”)
+from the [here](https://zenodo.org/record/7908793#.ZGP8gOzMIyk "here"),
+and code for using them to construct the PRS. Second, this repository
+also provides code that we used for the analyses in the manuscript (see
+folder “Code”)
 
 ## Required packages
 
@@ -62,11 +63,11 @@ used, the following information:
 
 <!-- -->
 
-    scaling <- fread("Misc/2022-03-16_TOPMed_scaling_PRS_CSx2.csv", data.table=F)
+    TOPMed_scaling <- fread("Misc/2022-03-16_TOPMed_scaling_PRS_CSx2.csv", data.table=F)
 
-    scaling<-scaling %>% dplyr::select(Trait,Ancestry,Mean,SD)
-    colnames(scaling)<-c("Trait","Ancestry","TOPMed_mean","TOPMed_sd")
-    scaling
+    TOPMed_scaling<-TOPMed_scaling %>% dplyr::select(Trait,Ancestry,Mean,SD)
+    colnames(TOPMed_scaling)<-c("Trait","Ancestry","TOPMed_mean","TOPMed_sd")
+    TOPMed_scaling
 
     ##   Trait Ancestry TOPMed_mean TOPMed_sd
     ## 1   SBP      EAS    4.20e-07  2.43e-07
@@ -92,10 +93,10 @@ race/ethnicity group, the following information:
 
 <!-- -->
 
-    weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
+    mgb_weight<-fread("Misc/2022-03-16_MGB_Weight_PRS_CSx2.csv", data.table=F)
     #weight
-    colnames(weight)<-c("Trait","Ancestry","All participants","Black","Hispanic/Latino","Asian","White")
-    weight
+    colnames(mgb_weight)<-c("Trait","Ancestry","All participants","Black","Hispanic/Latino","Asian","White")
+    mgb_weight
 
     ##   Trait Ancestry All participants Black Hispanic/Latino Asian White
     ## 1   SBP      AFR             1.81  2.00            1.78  0.48  1.82
@@ -126,9 +127,9 @@ each trait and ancestry-specific PRS; Third, we sum the PRS for each
 ancestry for a specific trait. Finally, we applied the final scale for
 BP-PRS using the TOPMed mean and SD we provide below.  
 
-    final_scale<-read.csv("Misc/2022-03-16_Final_TOPMed_scaling_PRSsum_PRS_CSx2.csv")
+    TOPMed_PRSsum_scaling<-read.csv("Misc/2022-03-16_Final_TOPMed_scaling_PRSsum_PRS_CSx2.csv")
 
-    final_scale
+    TOPMed_PRSsum_scaling
 
     ##    Trait Self_reported_ethnic_background      Mean   SD
     ## 1    SBP                All participants -2.32e-14 2.62
