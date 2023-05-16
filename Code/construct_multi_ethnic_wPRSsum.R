@@ -59,7 +59,7 @@ construct_wPRSsum<- function(ethnic_background, TOPMed_scaling,
   prs_all<-purrr:::reduce(out, left_join, by="person_id")
   
   prs_sum<-data.frame(person_id=prs_all$person_id, prs=apply(prs_all[,2:ncol(prs_all)],1, sum))
-  TOPMed_PRSsum_scaling_selected<-TOPMed_PRSsum_scaling[which(TOPMed_PRSsum_scaling$Trait==trait & TOPMed_PRSsum_scaling$Race== ethnic_background),]
+  TOPMed_PRSsum_scaling_selected<-TOPMed_PRSsum_scaling[which(TOPMed_PRSsum_scaling$Trait==trait & TOPMed_PRSsum_scaling$Self_reported_ethnic_background == ethnic_background),]
 
   prs_sum[,"prs"]<-(prs_sum[,"prs"]-TOPMed_PRSsum_scaling_selected$Mean)/TOPMed_PRSsum_scaling_selected$SD
   return(prs_sum)
