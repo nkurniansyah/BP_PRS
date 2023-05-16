@@ -32,7 +32,7 @@ construct_wPRSsum<- function(ethnic_background, TOPMed_scaling,
   #ancestries<-unique(as.character(TOPMed_scaling_selected$Ancestry))
   
   prs_file<-list(AFR=PRS_AFR_file, EUR=PRS_EUR_file, EAS=PRS_EAS_file)
-  
+  out<-list()
   for(ancestry in names(prs_file)){
     prs_ancestry<-prs_file[[ancestry]]
     mgb_weigt_ancestry<-mgb_weight_selected[which(mgb_weight_selected$Ancestry==ancestry),]
@@ -40,18 +40,18 @@ construct_wPRSsum<- function(ethnic_background, TOPMed_scaling,
     prs_df<- fread(prs_ancestry, data.table = F)
     
     prs_df<-prs_df %>% dplyr::select(IID,SCORE)
-    colnames(prs_df)<-c("person_id",paste0("prs_", ancesestry))
+    colnames(prs_df)<-c("person_id",paste0("prs_", ancestry))
     
     prs_df[,2]<-as.numeric(prs_df[,2])
     
-    topmed_scaling_ancestry<-TOPMed_scaling_selected[which(TOPMed_scaling_selected$Ancestry==ancesestry),]
+    topmed_scaling_ancestry<-TOPMed_scaling_selected[which(TOPMed_scaling_selected$Ancestry==ancestry),]
     mean_topmed<- as.numeric(topmed_scaling_ancestry$TOPMed_mean)
     sd_topmed<- as.numeric(topmed_scaling_ancestry$TOPMed_sd)
-    prs_df[,paste0("prs_",ancesestry)]<-(prs_df[,paste0("prs_",ancesestry)]-mean_topmed)/sd_topmed
+    prs_df[,paste0("prs_",ancestry)]<-(prs_df[,paste0("prs_",ancestry)]-mean_topmed)/sd_topmed
     
-    prs_df[,paste0("prs_",ancesestry)]<-prs_df[,paste0("prs_",ancesestry)]*mgb_weigt_ancestry$MGB_Weight
+    prs_df[,paste0("prs_",ancestry)]<-prs_df[,paste0("prs_",ancestry)]*mgb_weigt_ancestry$MGB_Weight
     
-    out[[ancesestry]]<- prs_df
+    out[[ancestry]]<- prs_df
     
   }
   
